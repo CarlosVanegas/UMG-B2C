@@ -10,61 +10,44 @@
   <div class="collapse navbar-collapse  w-auto h-auto ps" id="sidenav-collapse-main">
     <ul class="navbar-nav">
         @foreach($modules as $module)
-            @isset($module->title_menu)
-                <li class="nav-item mt-2">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">{{$module->title_menu}}</h6>
-                </li>
-            @endisset
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#opcioMenu_{{$module->id_module}}"  class="nav-link collapsed {{ (Request::is($module->url_direct) ? 'active' : '') }}" href="{{ url($module->url_direct) }}" aria-controls="applicationsExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path class="color-background" d="{{$module->icon}}"/>
-                        </svg>
-                    </div>
-                    <span class="nav-link-text ms-1">{{$module->name}}</span>
-                </a>
-                <div class="collapse" id="opcioMenu_{{$module->id_module}}" style="">
-                    <ul class="nav ms-4 ps-3">
-                        <li class="nav-item ">
-                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-user-profile">
-                                <span class="sidenav-mini-icon"> U </span>
-                                <span class="sidenav-normal"> User Profile </span>
-                            </a>
+            @foreach($module as $value)
+                @isset($value->name)
+                    @isset($value->title_menu)
+                        <li class="nav-item mt-2">
+                            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">{{$value->title_menu}}</h6>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-users-management">
-                                <span class="sidenav-mini-icon"> M </span>
-                                <span class="sidenav-normal"> Users Management </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-roles-management">
-                                <span class="sidenav-mini-icon"> K </span>
-                                <span class="sidenav-normal"> Roles Management </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-category-management">
-                                <span class="sidenav-mini-icon"> W </span>
-                                <span class="sidenav-normal"> Category Management </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-tags-management">
-                                <span class="sidenav-mini-icon"> D </span>
-                                <span class="sidenav-normal"> Tags Management </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-items-management">
-                                <span class="sidenav-mini-icon"> I </span>
-                                <span class="sidenav-normal"> Items Management </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+                    @endisset
+                    <li class="nav-item">
+                        <a data-bs-toggle="collapse" href="#opcioMenu_{{$value->id_module}}"  class="nav-link collapsed {{ (Request::is($value->url_direct) ? 'active' : '') }}" href="{{ url($value->url_direct) }}" aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path class="color-background" d="{{$value->icon}}"/>
+                                </svg>
+                            </div>
+                            <span class="nav-link-text ms-1">{{$value->name}}</span>
+                        </a>
+                        <div class="collapse" id="opcioMenu_{{$value->id_module}}" style="">
+                            <ul class="nav ms-4 ps-3">
+                                @if (count($module['sub_module']) > 0)
+                                    @foreach($module['sub_module'] as $item)
+                                        <li class="nav-item ">
+                                            <a class="nav-link " href="https://soft-ui-dashboard-pro-laravel.creative-tim.com/laravel-user-profile">
+                                                <span class="sidenav-mini-icon"> U </span>
+                                                <span class="sidenav-normal">{{$item->nombre}}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @elseif (count($module['sub_module']) === 0)
+                                    SIN PERMISOS
+                                @endif
+                                {{--@if(count($value['sub_module']) > 0)
+
+                                @endif--}}
+                            </ul>
+                        </div>
+                    </li>
+                @endisset
+            @endforeach
         @endforeach
     </ul>
   </div>
