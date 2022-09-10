@@ -2173,8 +2173,8 @@ progress {
 }
 .form-control:focus {
     background-color: #fff;
-    border-color: #e293d3;
-    box-shadow: 0 0 0 2px #e9aede;
+    border-color: #939de5;
+    box-shadow: 0 0 0 2px #939de5;
     color: #495057;
     outline: 0;
 }
@@ -2347,8 +2347,8 @@ textarea.form-control-sm {
     }
 }
 .form-select:focus {
-    border-color: #e293d3;
-    box-shadow: 0 0 0 2px #e9aede;
+    border-color: #939de5;
+    box-shadow: 0 0 0 2px #939de5;
     outline: 0;
 }
 .form-select[multiple],
@@ -2492,10 +2492,10 @@ textarea.form-control-sm {
     outline: 0;
 }
 .form-range:focus::-webkit-slider-thumb {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #e9aede;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #939de5;
 }
 .form-range:focus::-moz-range-thumb {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #e9aede;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #939de5;
 }
 .form-range::-moz-focus-outer {
     border: 0;
@@ -2947,6 +2947,7 @@ fieldset:disabled .btn {
     border-color: #cb0c9f;
     color: #fff;
 }
+
 .btn-check:focus + .btn-primary,
 .btn-primary:focus,
 .btn-primary:hover {
@@ -4610,7 +4611,7 @@ fieldset:disabled .btn {
     z-index: 2;
 }
 .accordion-button:focus {
-    border-color: #e293d3;
+    border-color: #939de5;
     box-shadow: none;
     outline: 0;
     z-index: 3;
@@ -15719,8 +15720,8 @@ fieldset:disabled .btn {
     margin-left: 0;
 }
 .input-group .form-control:focus {
-    border-left: 1px solid #e293d3 !important;
-    border-right: 1px solid #e293d3 !important;
+    border-left: 1px solid #939de5 !important;
+    border-right: 1px solid #939de5 !important;
 }
 .input-group .form-control:not(:first-child) {
     border-left: 0;
@@ -17107,7 +17108,9 @@ hr.horizontal.gray-light {
     color: #344767;
 }
 .navbar-vertical .navbar-nav > .nav-item .nav-link.active .icon {
-    background-image: linear-gradient(310deg, #cb0c9f, #cb0c9f);
+    /*background-image: linear-gradient(310deg, #cb0c9f, #cb0c9f);*/
+    background-image: linear-gradient(310deg, #17c1e8, #17c1e8);
+
 }
 .navbar-vertical .navbar-nav > .nav-item .nav-link.active .icon svg .color-background,
 .navbar-vertical .navbar-nav > .nav-item .nav-link.active .icon svg .color-foreground {
@@ -17128,7 +17131,7 @@ hr.horizontal.gray-light {
     color: rgba(58, 65, 111, 0.5);
     content: "\f107";
     display: inline-block;
-    font-family: Font Awesome\5 Free;
+    font-family: FontAwesome;
     font-style: normal;
     font-variant: normal;
     font-weight: 700;

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
@@ -25,9 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home']);
-	Route::get('dashboard', function () {
-		return view('dashboard');
-	})->name('dashboard');
+
+	Route::get('business', function () { return view('business'); })->name('business');
 
 	Route::get('billing', function () {
 		return view('billing');
@@ -67,6 +67,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
+    //Mis pantallas
+    //Route::get('dashboard', function () { return view('dashboard'); })->name('dashboard');
+    Route::get('business', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
+    Route::get('user-profile', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
+   /// Route::get('/', [MenuController::class, 'get_modules_bussines']);
 });
 
 
