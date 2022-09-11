@@ -70,6 +70,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Mis pantallas
     //Route::get('dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::get('business', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
+    Route::get('access-create-users', [MenuController::class, 'getAccess'])->name('access-create-users');
+    Route::get('access-user-groups', [MenuController::class, 'user_groups'])->name('access-user-groups');
     Route::get('user-profile', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
     Route::get('demo', [MenuController::class, 'getDemo'])->name('demo');
     Route::post('/save_data_business', [RegisterController::class, 'save_data_business']);
