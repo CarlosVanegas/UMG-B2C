@@ -11,7 +11,9 @@
                 <div class="row gx-4">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../assets/img/las_5_calles_logo.png" alt="..." class="w-100 border-radius-lg shadow-sm">
+                            @foreach($dataBusiness as $business)
+                                <img src="{{$business->logo}}" alt="..." class="w-100 border-radius-lg shadow-sm">
+                            @endforeach
                             <a href="javascript:;" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2" data-bs-toggle="modal" data-bs-target="#modalEditBusiness">
                                 <i class="fa fa-pen top-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"></i>
                             </a>
@@ -23,7 +25,7 @@
                                 {{ __('Cadena de tiendas') }}
                             </h5>
                             <p class="mb-0 font-weight-bold text-sm">
-                                {{ __('Ls 5 Calless') }}
+                                @foreach($dataBusiness as $business){{$business->name}}@endforeach
                             </p>
                         </div>
                     </div>
@@ -107,8 +109,11 @@
                         @csrf
                         <div class="col-md-4">
                             <label for="validationCustom01" class="form-label">Nombre de la entidad</label>
-                            <input name="name_business" type="text" class="form-control" id="validationCustom01" placeholder="Entidad S.A" required>
-                            <div class="valid-feedback">
+                            @foreach($dataBusiness as $business)
+                                <input name="name_business" type="text" class="form-control" id="validationCustom01" placeholder="Entidad S.A" value="{{$business->name}}" readonly required>
+
+                            @endforeach
+                           <div class="valid-feedback">
                                 Se ve bien
                             </div>
                         </div>
