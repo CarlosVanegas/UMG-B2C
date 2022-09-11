@@ -103,59 +103,70 @@
                     <h6 class="mb-0">{{ __('Datos del Negocio') }}</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
-                    <form action="/user-profile" method="POST" role="form text-left">
-                        <input type="hidden" name="_token" value="9bL4vgYKEC4eDZE0KX3CGWfkKFM9jKrNibDzt4UG">                                                                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="user-name" class="form-control-label">Nombre</label>
-                                    <div class="">
-                                        <input class="form-control" value="admin" type="text" placeholder="Name" id="user-name" name="name">
-                                    </div>
-                                </div>
+                    <form class="row g-3 needs-validation" method="post" action="/save_data_business" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label">Nombre de la entidad</label>
+                            <input name="name_business" type="text" class="form-control" id="validationCustom01" placeholder="Entidad S.A" required>
+                            <div class="valid-feedback">
+                                Se ve bien
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="user-email" class="form-control-label">Correo</label>
-                                    <div class="">
-                                        <input class="form-control" value="admin@softui.com" type="email" placeholder="@example.com" id="user-email" name="email">
-                                    </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom02" class="form-label">Teléfono</label>
+                            <input name="phone_business" type="text" class="form-control" id="validationCustom02" placeholder="7844-5680" required>
+                            <div class="valid-feedback">
+                                Se ve bien
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustomUsername" class="form-label">Correo</label>
+                            <div class="input-group has-validation">
+                                <input name="email_business" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" placeholder="admin@gmial.com"  required>
+                                <div class="invalid-feedback">
+                                    Ingrese un correo electrónico.
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="user.phone" class="form-control-label">Teléfono</label>
-                                    <div class="">
-                                        <input class="form-control" type="tel" placeholder="40770888444" id="number" name="phone" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="user.location" class="form-control-label">País</label>
-                                    <div class="">
-                                        <select class="form-control form-select" aria-label=".form-select-lg example">
-                                            <option selected>Selecciones</option>
-                                            <option value="1">Guatemala</option>
-                                            <option value="2">El Salvador</option>
-                                            <option value="3">Honduras</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom03" class="form-label">País</label>
+                            <select name="country" class="form-select" required aria-label="select example">
+                                <option value="">Seleccione País</option>
+                                <option value="GT">Guatemala</option>
+                                <option value="SV">El Salvador</option>
+                                <option value="HN">Honduras</option>
+                            </select>
+                            <div class="invalid-feedback">Ejemplo de comentarios de selección no válidos, proporcione una ciudad válida.</div>
+
                         </div>
-                        <div class="form-group">
-                            <label for="about">Descripción</label>
-                            <div class="">
-                                <textarea class="form-control" id="about" rows="3" placeholder="Breve descripción del negocio" name="about_me"></textarea>
-                            </div>
+                        <div class="col-md-3">
+                            <label for="validationCustom05" class="form-label">Códgo</label>
+                            <input name="code_business"  type="text" class="form-control" value="SKVPVVN" readonly>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-secondary btn-md mt-4 mb-4 mx-4" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">Guardar</button>
+                        <div class="col-12">
+                            <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="submit">Guardar Datos</button>
                         </div>
                     </form>
+                    <script>
+                        // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (function() {
+                            'use strict';
+                            window.addEventListener('load', function() {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function(form) {
+                                    form.addEventListener('submit', function(event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
+                    </script>
                 </div>
             </div>
         </div>

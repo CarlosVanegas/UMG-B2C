@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('business', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
     Route::get('user-profile', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
     Route::get('demo', [MenuController::class, 'getDemo'])->name('demo');
-   /// Route::get('/', [MenuController::class, 'get_modules_bussines']);
+    Route::post('/save_data_business', [RegisterController::class, 'save_data_business']);
 });
 
 
