@@ -142,7 +142,6 @@
                                 <option value="HN">Honduras</option>
                             </select>
                             <div class="invalid-feedback">Ejemplo de comentarios de selección no válidos, proporcione una ciudad válida.</div>
-
                         </div>
                         <div class="col-md-3">
                             <label for="validationCustom05" class="form-label">Códgo</label>

@@ -49,7 +49,7 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                          <span class="font-weight-bold">New message</span> from Laur1
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -67,7 +67,7 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
+                          <span class="font-weight-bold">New album</span> by Travis Scott1
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -95,9 +95,9 @@
                           </g>
                         </svg>
                       </div>
-                      <div class="d-flex flex-column justify-content-center">
+                      <div class="d-flex flex-column justify-asdasdasdadasd-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
+                          Payment successfully completed2
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>

@@ -67,14 +67,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
-    //Mis pantallas
+    //Mis pantallas user_permissions
     //Route::get('dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::get('business', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
     Route::get('access-create-users', [MenuController::class, 'getAccess'])->name('access-create-users');
     Route::get('access-user-groups', [MenuController::class, 'user_groups'])->name('access-user-groups');
+    Route::get('access-permissions', [MenuController::class, 'user_permissions'])->name('access-permissions');
+    Route::get('access-users', [MenuController::class, 'user_get'])->name('access-users');
     Route::get('user-profile', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
     Route::get('demo', [MenuController::class, 'getDemo'])->name('demo');
-    Route::post('/save_data_business', [RegisterController::class, 'save_data_business']);
+    Route::post('/save_data_business',   [RegisterController::class, 'save_data_business']);
+    Route::post('/save_data_roll', [RegisterController::class, 'save_data_roll']);
+
 });
 
 
@@ -94,3 +98,9 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/login', function () {
     return view('session/login-session');
 })->name('login');
+
+Route::get('/get/submodueles/{id}', [HomeController::class, 'getSubmodules']);
+
+Route::post('/get/demo', [HomeController::class, 'demodemo']);
+
+Route::post('/save_data_roll_demo', [RegisterController::class, 'save_data_roll']);
