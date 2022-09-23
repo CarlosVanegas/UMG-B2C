@@ -82,6 +82,14 @@ class MenuController extends Controller
         return view('user_groups', self::getParametros());
     }
 
+    public function user_permissions(){
+        return view('user_permissions', self::getParametros());
+    }
+
+    public function user_get(){
+        return view('user_get', self::getParametros());
+    }
+
 
 
 
@@ -106,6 +114,17 @@ class MenuController extends Controller
         $data_business = DB::table('tbusiness')->where('id_business','=',1)->get();
 
         return array('modules'=>$moduleArray,'dataBusiness'=>$data_business);
+    }
+
+
+    public function getMoules(){
+        $modules = DB::table('tmodule')->where('active','=',1)
+            ->orderBy('index', 'ASC')->get();
+
+
+        return view('user_groups', array( 'modules'=> $modules));
+
+       // return array('modules'=>$modules);
     }
 
 }
