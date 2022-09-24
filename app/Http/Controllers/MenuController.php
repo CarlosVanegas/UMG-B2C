@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -17,6 +18,8 @@ class MenuController extends Controller
     public function getDemo(){
 
 
+        echo "sdd";
+        die;
         $moduleArray = array();
         $modules = DB::table('tmodule')->where('active','=',1)
             ->orderBy('index', 'ASC')->get();
@@ -75,7 +78,23 @@ class MenuController extends Controller
 
 
     public function getAccess(){
-        return view('access', self::getParametros());
+
+        $code =  strtoupper(Str::random(6));
+        $stores = DB::select("SELECT id_store, CONCAT(name, ' | ', municipio,' | ' ,departament) AS store  FROM tstore  WHERE active = 1;");
+        $roll = DB::select("SELECT * FROM troll WHERE active = 1;");
+
+        return view('access', (self::getParametros()),array('code'=>$code,'stores'=>$stores,'roll'=>$roll));
+    }
+
+    public function getstores(){
+        $code =  strtoupper(Str::random(6));
+        $departaments = DB::select("SELECT * FROM tdepartament ");
+        $tipeStore = DB::select("SELECT * FROM ttype_store;");
+        $store = DB::select("SELECT * FROM tstore ORDER BY id_store ASC;");
+
+
+        return view('store-create', (self::getParametros()),
+            array('code'=>$code,'departament'=>$departaments,'typeStore'=>$tipeStore,'stores'=>$store));
     }
 
     public function user_groups(){

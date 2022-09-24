@@ -70,6 +70,15 @@
       <p class="m-0">{{ session('success')}}</p>
     </div>
   @endif
+
+  @if(session()->has('warning '))
+      <div style=" top: 0; color: white; " x-data="{ show: true}"
+           x-init="setTimeout(() => show = false, 4000)"
+           x-show="show"
+           class="position-fixed bg-warning rounded right-3 text-sm py-2 px-4">
+          <p class="m-0">{{ session('warning ')}}</p>
+      </div>
+  @endif
     <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>

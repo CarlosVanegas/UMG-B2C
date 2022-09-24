@@ -76,11 +76,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('access-permissions', [MenuController::class, 'user_permissions'])->name('access-permissions');
     Route::get('access-users', [MenuController::class, 'user_get'])->name('access-users');
     Route::get('user-profile', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
-    Route::get('demo', [MenuController::class, 'getDemo'])->name('demo');
+    Route::get('store-create',  [MenuController::class, 'getstores'])->name('store-create');
+    Route::get('/testing', [MenuController::class, 'getDemo'])->name('testing');
     Route::post('/save_data_business',   [RegisterController::class, 'save_data_business']);
     Route::post('/save_data_roll', [RegisterController::class, 'save_data_roll']);
+    Route::post('/save_data_store', [RegisterController::class, 'save_data_store']);
     Route::post('/edit_data_roll', [RegisterController::class, 'edit_data_roll']);
-
+    Route::post('/create-new-user', [RegisterController::class, 'create_new_user']);
 });
 
 
@@ -103,9 +105,13 @@ Route::get('/login', function () {
 
 Route::get('/get/submodueles/{id}', [HomeController::class, 'getSubmodules']);
 Route::get('/get/submodueles/roll/{id_roll}', [HomeController::class, 'getSubmodulesOfRoll']);
+Route::get('/get/municipios/{id_departament}', [HomeController::class, 'getMunicipios']);
 
 Route::post('/get/demo', [HomeController::class, 'demodemo']);
 
 Route::post('/save_data_roll_demo', [RegisterController::class, 'save_data_roll']);
 Route::post('delete_roll', [HomeController::class, 'deleteRoll']);
 Route::get('get_roll/{id}', [HomeController::class, 'getRoll']);
+
+
+Route::get('/demodemodemo', [HomeController::class, 'testing'])->name('demodemodemo');

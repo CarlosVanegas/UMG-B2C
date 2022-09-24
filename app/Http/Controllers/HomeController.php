@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Ramsey\Uuid\Exception\UnableToBuildUuidException;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,11 @@ class HomeController extends Controller
         WHERE detail.id_roll =  ".$id);
 
 
+        return $results;
+    }
+
+    public function getMunicipios($id){
+        $results = DB::select("SELECT * FROM tmunicipio WHERE id_departament =  ".$id);
         return $results;
     }
 
@@ -81,7 +88,18 @@ class HomeController extends Controller
 
     }
 
-    public function demodemo(){
-        echo ":D";
+    public function testing(){
+        $departamentArray = array();
+        $departaments = DB::select("SELECT * FROM tdepartament ");
+
+        foreach ($departaments as $departament) {
+              $municipio =  DB::select("SELECT * FROM tmunicipio
+                    WHERE id_departament = ".$departament->id_departament);
+
+            array_push($departamentArray,   array(  $departaments, '$unicipio'=> $municipio));
+        }
+
+
+        return $departamentArray;
     }
 }
