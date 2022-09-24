@@ -79,7 +79,11 @@ class MenuController extends Controller
     }
 
     public function user_groups(){
-        return view('user_groups', self::getParametros());
+        $roll = DB::select("SELECT tmodule.name as module, t.* FROM tmodule
+                INNER JOIN troll t on tmodule.id_module = t.id_module ORDER BY t.id_roll ASC") ;
+
+        return view('user_groups',  (self::getParametros()),array('roll'=>$roll) );
+
     }
 
     public function user_permissions(){
@@ -89,9 +93,6 @@ class MenuController extends Controller
     public function user_get(){
         return view('user_get', self::getParametros());
     }
-
-
-
 
     public function getParametros(){
         $moduleArray = array();
@@ -126,5 +127,8 @@ class MenuController extends Controller
 
        // return array('modules'=>$modules);
     }
+
+
+
 
 }
