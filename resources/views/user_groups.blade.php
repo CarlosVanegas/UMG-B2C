@@ -58,7 +58,7 @@
                                                 <td class="text-sm font-weight-normal">{{$data->module}}</td>
                                                 <td class="text-sm font-weight-normal">{{$data->active}}</td>
                                                 <td class="text-sm font-weight-normal">
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#editModal"
+                                                    <a id="editarRoll" href="#" data-bs-toggle="modal" data-bs-target="#editModal"
                                                        class="mx-3" data-bs-toggle="tooltip"
                                                        data-bs-original-title="Editar">
                                                         <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
@@ -148,6 +148,7 @@
         </div>
     </div>
      <!-- Modal Editar ROLL -->
+
      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
          <div class="modal-dialog">
              <div class="modal-content">
@@ -160,19 +161,19 @@
                          @csrf
                          <label for="categoryName" class="form-label">Nombre del Roll</label>
                          <div class="">
-                             <input type="text" class="form-control " value="" id="categoryName" name="categoryName" onfocus="focused(this)" onfocusout="defocused(this)">
+                             <input type="text" class="form-control " value="" id="categoryName" name="edit_categoryName" onfocus="focused(this)" onfocusout="defocused(this)">
                          </div>
                          <div>
                              <label class="mt-4">Descripción del Roll</label>
                              <div class="">
-                                 <textarea type="text" class="form-control  " name="description" id="categoryDescription"></textarea>
+                                 <textarea type="text" class="form-control  " name="edit_description" id="categoryDescription"></textarea>
                              </div>
                          </div>
 
                          <div class="row">
                              <div class="col-md-6">
                                  <label for="validationCustom03" class="form-label">Estao</label>
-                                 <select name="status" class="form-select" required aria-label="select example">
+                                 <select name="edit_status" class="form-select" required aria-label="select example">
                                      <option value="">Seleccione un estado</option>
                                      <option value="1">Activo</option>
                                      <option value="0">Inactivo</option>
@@ -181,7 +182,7 @@
                              </div>
                              <div class="col-md-6">
                                  <label for="validationCustom03" class="form-label">Modulos</label>
-                                 <select id="moduleSelect" name="module" class="form-select" required aria-label="select example">
+                                 <select id="moduleSelect" name="edit_module" class="form-select" required aria-label="select example">
                                      <option value="">Seleccione Módulo</option>
                                      @isset($modules)
                                          @foreach($modules as $module)
@@ -197,7 +198,7 @@
                              </div>
                              <div class="col-md-10">
                                  <label for="validationCustom03" class="form-label">
-                                     <input type="hidden" name="numero_submodules" id="submodules_count" />
+                                     <input type="hidden" name="edit_numero_submodules" id="submodules_count" />
                                      <span  id="numero_submodules"></span> Sub Modulos</label>
                                  <div id="containerSubmodules" >
 
@@ -206,14 +207,13 @@
                          </div>
                          <div class=" justify-content-end mt-4">
                              <button type="button" class="btn btn-secondary mx-4" data-bs-dismiss="modal">Cerrar</button>
-                             <button type="submit" name="button" class="btn bg-gradient-dark js-btn-next">Crear Roll</button>
+                             <button type="submit"  class="btn bg-gradient-dark js-btn-next">Crear Roll</button>
                          </div>
                      </form>
                  </div>
              </div>
          </div>
      </div>
-
      <!-- Modal Borrar ROLL -->
      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
          <div class="modal-dialog">
@@ -238,13 +238,15 @@
      <script>
          var url = protocol + "//" +  hostName;
          let id_roll;
+
+         $("#acept_delete_roll").click(function (){
+
+             $('#deleteModal').modal('hide');
+         });
+
          $(".delete-roll").click(function() {
              var $row = $(this).closest("tr");
              id_roll = $row.find(".roll").text();
-         });
-
-         $("#acept_delete_roll").click(function (){
-             $('#deleteModal').modal('hide');
              var myHeaders = new Headers();
              myHeaders.append("Content-Type", "application/json");
 
@@ -267,6 +269,28 @@
                  })
                  .catch(error => console.log('error', error));
          });
+
+         $("#editarRoll").click(function (){
+             var myHeaders = new Headers();
+             myHeaders.append("Cookie", "XSRF-TOKEN=eyJpdiI6InFCbFlxSFlFeHZKdjI4MnJhSU9iYnc9PSIsInZhbHVlIjoia3p2cld4WUMvM3FtRUJKVU53VUs3MzdOenZmS3loODAwdWtBMnN2QlpjeXo0aHAyUGdDSUswZ3dMWEZJelp2NzZDZkpIOThkRTNtTjFvZDJuS09JYVJ2VTA2Z3N4eGtSRTFHQS92TC9pbjN6NUVua0ttNHF0aWNmYXd3L2xTL0YiLCJtYWMiOiIyNGY0MDFjZGIzMGE2NmU4M2VlODVmMjBkNjJiYjlhYmY2OGRmYmFjNDBhNmZhZWQ2YjgxZjU1ZmU5ZWU4OTg4IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6ImpaeVQwWVJRL3A5RzQyMmwyeU1MMkE9PSIsInZhbHVlIjoiT0RuR3hmRUIrUWZibjZQRWtjN2JkaEd0eWpuK1N0UXE3MXBYQ21SODhkUXBUWE9ueExlZnFNNUlQbFNWeVVYamdNR01EU1Y4RzFXbUxGV2gzYVF6ODFQd0JnYXJSVTdJdm5QMFoyc25rMGhyWGFzTVQ5Y29WOHBhK2R3eE5TZ2giLCJtYWMiOiJmODU5Yzk1MWEwMTZhMWNiZTg0NTQzNDg1OTYyOTcyMTFiZDQ3NWY5MzQ1N2NiYWZhMjRmZTY2ZTY5NDQ2YjZlIiwidGFnIjoiIn0%3D");
+
+             var requestOptions = {
+                 method: 'GET',
+                 headers: myHeaders,
+                 redirect: 'follow'
+             };
+
+             fetch(url+"/get_roll/"+id_roll, requestOptions)
+                 .then(response => response.json())
+                 .then(result => {
+                     console.log(result)
+                 })
+                 .catch(error => console.log('error', error));
+         });
+
+         //$("#acept_delete_roll").click(
+
+
      </script>
 @endsection
 

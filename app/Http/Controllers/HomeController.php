@@ -51,8 +51,24 @@ class HomeController extends Controller
 
     public function getRoll($id){
 
-        $modules = DB::table('tmodule')->where('active','=',1)
-            ->orderBy('index', 'ASC')->get();
+        $roll = DB::table('troll')->where('id_roll','=',$id)->get();
+
+        if($roll == true){
+            $rollArray = array();
+            foreach ($roll as $r){
+                $detail = DB::select("
+                    SELECT d.*,tm.nombre FROM troll_detail d
+                        LEFT JOIN tsub_module tm
+                            on d.id_submodule = tm.id_submodule
+                        WHERE id_roll = ".$r->id_roll);
+
+                array_push($rollArray,   array('roll'=> $roll, 'roll_detail'=> $detail));
+            }
+
+            return $rollArray;
+        }
+        return response([ 'code'=>201,  'message'=>'Roll no encontrado' ], 201);
+
 
     }
 
