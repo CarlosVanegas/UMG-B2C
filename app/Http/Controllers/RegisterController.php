@@ -72,4 +72,35 @@ class RegisterController extends Controller
         return redirect('/access-user-groups')->with('success','Categoria creada correctamente');
     }
 
+    public function edit_data_roll(Request $request){
+
+
+        $id_roll = request('edit_id_roll');
+
+        DB::table('troll')->where('id_roll',$id_roll)->update(
+            array(
+            'name'=>request('edit_categoryName'),
+            'description'=>request('edit_description'),
+            'active'=>request('edit_status'),
+            'id_module'=>request('edit_module'),
+            'id_roll'=>$id_roll,
+        ));
+
+        $number_submodules_edit = request('edit_numero_submodules');
+        for ($i = 1; $i<= $number_submodules_edit; $i++){
+           $status = (!empty(request('edit_status_'.$i))) ? request('edit_status_'.$i) : 0;
+           $id_roll_detail= request('edit_sub_submodule_'.$i);
+            //echo "<br>".$id_roll_detail." -     ".request('edit_sub_module_'.$i) . " - ".$status;
+            DB::table('troll_detail')->where('id_roll_detail',$id_roll_detail)->update(
+                array(
+                    'id_roll' => $id_roll,
+                    'id_submodule' => request('edit_sub_module_'.$i),
+                    'status' => $status));
+
+
+        }
+
+        return redirect('/access-user-groups')->with('Roll editado correctamente!');
+    }
+
 }

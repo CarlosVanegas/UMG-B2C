@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('demo', [MenuController::class, 'getDemo'])->name('demo');
     Route::post('/save_data_business',   [RegisterController::class, 'save_data_business']);
     Route::post('/save_data_roll', [RegisterController::class, 'save_data_roll']);
+    Route::post('/edit_data_roll', [RegisterController::class, 'edit_data_roll']);
 
 });
 
@@ -101,6 +102,7 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('/get/submodueles/{id}', [HomeController::class, 'getSubmodules']);
+Route::get('/get/submodueles/roll/{id_roll}', [HomeController::class, 'getSubmodulesOfRoll']);
 
 Route::post('/get/demo', [HomeController::class, 'demodemo']);
 
