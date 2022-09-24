@@ -59,11 +59,11 @@
                                                 <td class="text-sm font-weight-normal">{{$data->active}}</td>
                                                 <td class="text-sm font-weight-normal">
                                                     <a id="editarRoll" href="#" data-bs-toggle="modal" data-bs-target="#editModal"
-                                                       class="mx-3" data-bs-toggle="tooltip"
+                                                       class="editRoll mx-3" data-bs-toggle="tooltip"
                                                        data-bs-original-title="Editar">
                                                         <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                                                     </a>
-                                                    <span data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                    <span id="eliminarRoll" data-bs-toggle="modal" data-bs-target="#deleteModal"
                                                         style="cursor: pointer;" data-bs-toggle="tooltip" class="delete-roll mx-3" data-bs-original-title="Eliminar">
                                                         <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
                                                     </span>
@@ -239,14 +239,13 @@
          var url = protocol + "//" +  hostName;
          let id_roll;
 
-         $("#acept_delete_roll").click(function (){
-
-             $('#deleteModal').modal('hide');
-         });
-
          $(".delete-roll").click(function() {
              var $row = $(this).closest("tr");
              id_roll = $row.find(".roll").text();
+             console.log(id_roll);
+         });
+
+         $("#acept_delete_roll").click(function (){
              var myHeaders = new Headers();
              myHeaders.append("Content-Type", "application/json");
 
@@ -268,11 +267,17 @@
                      //location.reload();
                  })
                  .catch(error => console.log('error', error));
+
+             $('#deleteModal').modal('hide');
          });
 
-         $("#editarRoll").click(function (){
+
+
+         $(".editRoll").click(function (){
+             var $row = $(this).closest("tr");
+             id_roll = $row.find(".roll").text();
+             console.log(id_roll);
              var myHeaders = new Headers();
-             myHeaders.append("Cookie", "XSRF-TOKEN=eyJpdiI6InFCbFlxSFlFeHZKdjI4MnJhSU9iYnc9PSIsInZhbHVlIjoia3p2cld4WUMvM3FtRUJKVU53VUs3MzdOenZmS3loODAwdWtBMnN2QlpjeXo0aHAyUGdDSUswZ3dMWEZJelp2NzZDZkpIOThkRTNtTjFvZDJuS09JYVJ2VTA2Z3N4eGtSRTFHQS92TC9pbjN6NUVua0ttNHF0aWNmYXd3L2xTL0YiLCJtYWMiOiIyNGY0MDFjZGIzMGE2NmU4M2VlODVmMjBkNjJiYjlhYmY2OGRmYmFjNDBhNmZhZWQ2YjgxZjU1ZmU5ZWU4OTg4IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6ImpaeVQwWVJRL3A5RzQyMmwyeU1MMkE9PSIsInZhbHVlIjoiT0RuR3hmRUIrUWZibjZQRWtjN2JkaEd0eWpuK1N0UXE3MXBYQ21SODhkUXBUWE9ueExlZnFNNUlQbFNWeVVYamdNR01EU1Y4RzFXbUxGV2gzYVF6ODFQd0JnYXJSVTdJdm5QMFoyc25rMGhyWGFzTVQ5Y29WOHBhK2R3eE5TZ2giLCJtYWMiOiJmODU5Yzk1MWEwMTZhMWNiZTg0NTQzNDg1OTYyOTcyMTFiZDQ3NWY5MzQ1N2NiYWZhMjRmZTY2ZTY5NDQ2YjZlIiwidGFnIjoiIn0%3D");
 
              var requestOptions = {
                  method: 'GET',
@@ -283,7 +288,9 @@
              fetch(url+"/get_roll/"+id_roll, requestOptions)
                  .then(response => response.json())
                  .then(result => {
-                     console.log(result)
+
+                     result[0].roll[0].name
+                     console.log(result[0].roll[0].name)
                  })
                  .catch(error => console.log('error', error));
          });
