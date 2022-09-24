@@ -22,47 +22,38 @@ class HomeController extends Controller
     }
 
 
-    public function save_data_roll(Request $request){
+    public function deleteRoll(Request $request){
+        $message = "";
+        if($request->isJson()){
+            $data       = $request->all();
+            $id_roll    = $data['id_roll'];
+
+            $troll_detail =  DB::table('troll_detail')->where('id_roll', $id_roll)->delete();
+
+            if($troll_detail == true){
+                DB::table('troll')->where('id_roll', $id_roll)->delete();
+                $message = "Roll eliminado correctamente";
+            }else{
+                $message = "Roll no encontrado";
+            }
+
+            return response([ 'code'=>201,  'message'=>$message ], 201);
+
+        }else{
+            return response([
+                'code'=>401,
+                'message'=>'format not allowed'
+            ], 401);
+
+        }
+    }
 
 
-        var_dump($request);
-        die;
+    public function getRoll($id){
 
-        $request = array(
-            'name' => request('categoryName'),
-            'description' => request('description'),
-            'active' => request('status'),
-            /*'id_staff' => request('module'),*/
-            /* 'id_permissions' => request('module'),*/
-            'id_module' => request('module')
-        );
+        $modules = DB::table('tmodule')->where('active','=',1)
+            ->orderBy('index', 'ASC')->get();
 
-        $request2 = array(
-            'name' => request('categoryName'),
-            'description' => request('description'),
-            'active' => request('status'),
-            /*'id_staff' => request('module'),*/
-            /* 'id_permissions' => request('module'),*/
-            'id_module' => request('module'),
-            'sub_module_1' => request('sub_module_1'),
-            'sub_module_2' => request('sub_module_2'),
-            'sub_module_3' => request('sub_module_3'),
-            'sub_module_4' => request('sub_module_4'),
-            'sub_module_5' => request('sub_module_5'),
-            'sub_module_6' => request('sub_module_6'),
-        );
-
-        print_r($request2);
-
-        die;
-        DB::table('troll')->insert([
-            'name' => request('categoryName'),
-            'description' => request('description'),
-            'active' => request('status'),
-            'id_module' => request('module')
-        ]);
-
-        return redirect('/access-user-groups')->with('success','Categoria creada correctamente');
     }
 
     public function demodemo(){

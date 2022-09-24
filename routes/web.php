@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Mis pantallas user_permissions
     //Route::get('dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::get('business', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
+    //Route::get('access-user-groups', [MenuController::class, 'get_modules_bussines'])->name('access-user-groups');
     Route::get('access-create-users', [MenuController::class, 'getAccess'])->name('access-create-users');
     Route::get('access-user-groups', [MenuController::class, 'user_groups'])->name('access-user-groups');
     Route::get('access-permissions', [MenuController::class, 'user_permissions'])->name('access-permissions');
@@ -104,3 +105,5 @@ Route::get('/get/submodueles/{id}', [HomeController::class, 'getSubmodules']);
 Route::post('/get/demo', [HomeController::class, 'demodemo']);
 
 Route::post('/save_data_roll_demo', [RegisterController::class, 'save_data_roll']);
+Route::post('delete_roll', [HomeController::class, 'deleteRoll']);
+Route::get('get_roll/{id}', [HomeController::class, 'getRoll']);
