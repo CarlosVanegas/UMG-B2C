@@ -157,23 +157,25 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body">
-                     <form id="roles_subroles" method="post" action="/save_data_roll" enctype="multipart/form-data" novalidate>
+                     <form id="edit_roles_subroles" method="post" action="/edit_data_roll" enctype="multipart/form-data" novalidate>
                          @csrf
+                         <input type="hidden" name="edit_id_roll" id="edit_id_roll" />
+
                          <label for="categoryName" class="form-label">Nombre del Roll</label>
                          <div class="">
-                             <input type="text" class="form-control " value="" id="categoryName" name="edit_categoryName" onfocus="focused(this)" onfocusout="defocused(this)">
+                             <input type="text" class="form-control " value="" id="editCategoryName" name="edit_categoryName" onfocus="focused(this)" onfocusout="defocused(this)">
                          </div>
                          <div>
                              <label class="mt-4">Descripción del Roll</label>
                              <div class="">
-                                 <textarea type="text" class="form-control  " name="edit_description" id="categoryDescription"></textarea>
+                                 <textarea type="text" class="form-control  " name="edit_description" id="editCategoryDescription"></textarea>
                              </div>
                          </div>
 
                          <div class="row">
                              <div class="col-md-6">
                                  <label for="validationCustom03" class="form-label">Estao</label>
-                                 <select name="edit_status" class="form-select" required aria-label="select example">
+                                 <select id="editStatus" name="edit_status" class="form-select" required aria-label="select example">
                                      <option value="">Seleccione un estado</option>
                                      <option value="1">Activo</option>
                                      <option value="0">Inactivo</option>
@@ -182,7 +184,7 @@
                              </div>
                              <div class="col-md-6">
                                  <label for="validationCustom03" class="form-label">Modulos</label>
-                                 <select id="moduleSelect" name="edit_module" class="form-select" required aria-label="select example">
+                                 <select id="editModuleSelect" name="edit_module" class="form-select" required aria-label="select example">
                                      <option value="">Seleccione Módulo</option>
                                      @isset($modules)
                                          @foreach($modules as $module)
@@ -198,16 +200,16 @@
                              </div>
                              <div class="col-md-10">
                                  <label for="validationCustom03" class="form-label">
-                                     <input type="hidden" name="edit_numero_submodules" id="submodules_count" />
-                                     <span  id="numero_submodules"></span> Sub Modulos</label>
-                                 <div id="containerSubmodules" >
+                                     <input type="hidden" name="edit_numero_submodules" id="edit_submodules_count" />
+                                     <span  id="edit_numero_submodules"></span> Sub Modulos</label>
+                                 <div id="edit_containerSubmodules" >
 
                                  </div>
                              </div>
                          </div>
                          <div class=" justify-content-end mt-4">
                              <button type="button" class="btn btn-secondary mx-4" data-bs-dismiss="modal">Cerrar</button>
-                             <button type="submit"  class="btn bg-gradient-dark js-btn-next">Crear Roll</button>
+                             <button type="submit"  class="btn bg-gradient-dark js-btn-next">Guardar Cambios</button>
                          </div>
                      </form>
                  </div>
@@ -277,8 +279,8 @@
              var $row = $(this).closest("tr");
              id_roll = $row.find(".roll").text();
              console.log(id_roll);
-             var myHeaders = new Headers();
 
+             var myHeaders = new Headers();
              var requestOptions = {
                  method: 'GET',
                  headers: myHeaders,
@@ -289,9 +291,71 @@
                  .then(response => response.json())
                  .then(result => {
 
-                     result[0].roll[0].name
-                     console.log(result[0].roll[0].name)
+                 $("#editCategoryName").val(result[0].roll[0].name);
+                 $("#editCategoryDescription").val(result[0].roll[0].description);
+                 $("#editStatus").val(result[0].roll[0].active);
+                 $("#editModuleSelect").val(result[0].roll[0].id_module);
+                 $("#edit_id_roll").val(result[0].roll[0].id_roll);
+
+                     var myHeaders = new Headers();
+                     var requestOptions = {
+                         method: 'GET',
+                         headers: myHeaders,
+                         redirect: 'follow'
+                     };
+                     let count = 0;
+                     console.log(url+"/get/submodueles/roll/"+result[0].roll[0].id_roll);
+                     fetch(url+"/get/submodueles/roll/"+result[0].roll[0].id_roll, requestOptions)
+                         .then(response => response.json())
+                         .then(result => {
+                             $("#edit_numero_submodules").text(result.length);
+                             $("#edit_submodules_count").val(result.length);
+                             $( ".d-flex" ).remove();
+                             $( ".horizontal" ).remove();
+                             result.forEach((values,keys)=>{
+                                 count++;
+
+                                 let status = (values.status == "1") ? "checked" : "";
+                                 let status_test = (values.status == "1") ? "Activo" : "Inactivo";
+                                 console.log(values.status);
+                                 $( "#edit_containerSubmodules" ).append( "<div class=\"d-flex\">\n" +
+                                     "                                        <img style=\" max-width: 20%; \" class=\"width-48-px\" src=\"https://www.svgrepo.com/show/335327/bullet.svg\" alt=\"logo_spotify\">\n" +
+                                     "                                        <div class=\"my-auto ms-3\">\n" +
+                                     "                                            <div class=\"h-100\">\n" +
+                                     "                                                <h6 class=\"mb-0\">"+values.nombre+"</h6>\n" +
+                                     "                                            </div>\n" +
+                                     "                                        </div>\n" +
+                                     "                                        <p id=\"edit_status_"+ count +"\" class=\"text-sm text-secondary ms-auto me-3 my-auto\">"+status_test+"</p>\n" +
+                                     "                                        <input type=\"hidden\" name=\"edit_sub_module_"+ count +"\" value="+values.id_submodule+" > \n" +
+                                     "                                        <input type=\"hidden\" name=\"edit_sub_submodule_"+ count +"\" value="+values.id_roll_detail+" > \n" +
+                                     "                                        <div class=\"form-check form-switch my-auto\">\n" +
+                                     "                                            <input id=\"check_"+ count +"\" name=\"edit_status_"+ count +"\"  class=\"form-check-input\" "+status+"=\"\" type=\"checkbox\"  value=\""+values.status+"\">\n" +
+                                     "                                        </div>\n" +
+                                     "                                    </div><hr class=\"horizontal dark\">" );
+                             })
+                             $('input[type=checkbox]').on('change', function() {
+                                 let status = '';
+                                 let check;
+                                 if ($(this).is(':checked') ) {
+                                     status = $(this).prop("id").replace('check_','edit_status_');
+                                     check = $(this).prop("id");
+                                     $("#"+status).text('Activo');
+                                     $('#'+check).val('1');
+                                     console.log("Checkbox " + check +  " (" + $(this).val() + ") => Activo");
+                                 } else {
+                                     status = $(this).prop("id").replace('check_','status_');
+                                     $("#"+status).text('Inactivo');
+                                     check = $(this).prop("id");
+                                     $('#'+check).val('0');
+                                     console.log("Checkbox " + check +  " (" + $(this).val() + ") => Inactivo");
+                                 }
+                             });
+                         })
+                         .catch(error => console.log('error', error));
+
                  })
+
+
                  .catch(error => console.log('error', error));
          });
 

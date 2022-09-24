@@ -21,6 +21,15 @@ class HomeController extends Controller
         return $results;
     }
 
+    public function getSubmodulesOfRoll($id){
+        $results = DB::select("SELECT tm.nombre,tm.id_submodule,detail.status,detail.id_roll_detail   FROM troll_detail detail
+            INNER JOIN tsub_module tm on detail.id_submodule = tm.id_submodule
+        WHERE detail.id_roll =  ".$id);
+
+
+        return $results;
+    }
+
 
     public function deleteRoll(Request $request){
         $message = "";
