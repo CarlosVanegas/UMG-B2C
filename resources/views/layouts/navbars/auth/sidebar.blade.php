@@ -46,7 +46,7 @@
                             <li class="nav-item">
                                 <a id="module{{$value->id_module}}" data-bs-toggle="collapse" href="#opcioMenu_{{$value->id_module}}"  class="nav-link collapsed {{ (strpos(Request::path(), $value->url_direct) !== false) ? 'active' : '' }}" aria-controls="applicationsExamples" role="button" aria-expanded="false">
                                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
                                             <path class="color-background" d="{{$value->icon}}"/>
                                         </svg>
                                     </div>

@@ -35,6 +35,41 @@ class RegisterController extends Controller
         return redirect('/dashboard');
     }
 
+    public function create_new_user(){
+
+        $exixt =  DB::table('users')->where('email', request('email') )->exists();
+
+        if($exixt == false){
+
+            $usersId = DB::table('users')->insertGetId([
+                'name' => request('userNameInput'),
+                'email' => request('email',Rule::unique('users', 'email')),
+                'password' => bcrypt(request('password')),
+                'phone' => request('phone'),
+            ]);
+
+             DB::table('tstaff')->insert([
+                'code_store' => request('direction_store'),
+                'code_satff' => request('code_staff'),//*
+                'first_name' => request('firstName'),//**
+                'last_name' => request('lastName'),//**
+                'active' => 1,
+                'age' => request('age'),//**
+                'id_roll' => request('rollUser'), //**
+                'id_store' => request('id_store'), //**
+                'id' => $usersId,
+                'photo' => request('name_departament'),
+            ]);
+
+            session()->flash('success', 'Usuario creado correctamente!');
+            return redirect('/access-create-users')->with('success','Usuario creado correctamente!');
+
+        }else{
+            session()->flash('success', 'Este correo ya exixte.');
+            return redirect('/access-create-users')->with('warning','Este correo ya exixte');
+        }
+    }
+
 
     public function save_data_business(){
 
@@ -70,6 +105,29 @@ class RegisterController extends Controller
             ]);
         }
         return redirect('/access-user-groups')->with('success','Categoria creada correctamente');
+    }
+
+    public function save_data_store(Request $request){
+
+
+
+         DB::table('tstore')->insert([
+             'name' => request('name_store'),
+             'code_store' => request('codeStore'),
+             'description' => request('description'),
+             'departament' => request('departament'),
+             'phone' => request('phone'),
+             'direction' => request('direction_store'),
+             'active' => request('status'),
+             'type_store' => request('type_store'),
+             'id_departament' => request('departament'),
+             'id_municipio' => request('municipio'),
+             'municipio' => request('name_municipio'),
+             'departament' => request('name_departament'),
+        ]);
+
+
+        return redirect('/store-create')->with('success','Tienda creada correctamente');
     }
 
     public function edit_data_roll(Request $request){

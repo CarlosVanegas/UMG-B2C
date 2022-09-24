@@ -1,4 +1,4 @@
-
+console.log("index");
 var protocol = window.location.protocol;
 var hostName = window.location.hostname;
 var url      = protocol + "//" +  hostName;
@@ -61,6 +61,41 @@ console.log(url);
 
     });
 
+
+    $('#departamentSelect').on('change', function() {
+        let departament = $('#departamentSelect').find(":selected").text();
+        $("#name_departament").val(departament);
+
+        let SubModules = [];
+        let idSubmodule = this.value;
+        var myHeaders = new Headers();
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        let count = 0;
+        fetch(url+"/get/municipios/"+idSubmodule, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                $("#numero_submodules").text(result.length);
+                $("#submodules_count").val(result.length);
+                $( ".muunicipioss" ).remove();
+                result.forEach((values,keys)=>{
+                    $( "#muncipios" ).append("<option class='muunicipioss' value=\""+values.id_minicipio+"\">"+values.name+"</option>");
+                })
+            })
+            .catch(error => console.log('error', error));
+
+
+    });
+
+    //
+    $("#muncipios").on('change',function (){
+        let municipio = $('#muncipios').find(":selected").text();
+        $("#name_municipio").val(municipio);
+    });
+
     $(document).ready(function() {
         $('#example').DataTable( {
             deferRender:    true,
@@ -69,6 +104,7 @@ console.log(url);
             scroller:       true
         } );
     } );
+
 })( jQuery );
 
 
