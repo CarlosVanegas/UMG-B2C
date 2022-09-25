@@ -111,6 +111,7 @@ Route::post('/get/demo', [HomeController::class, 'demodemo']);
 
 Route::post('/save_data_roll_demo', [RegisterController::class, 'save_data_roll']);
 Route::post('delete_roll', [HomeController::class, 'deleteRoll']);
+Route::post('delete_user', [HomeController::class, 'deleteUser']);
 Route::get('get_roll/{id}', [HomeController::class, 'getRoll']);
 
 
