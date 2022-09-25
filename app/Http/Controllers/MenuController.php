@@ -110,7 +110,13 @@ class MenuController extends Controller
     }
 
     public function user_get(){
-        return view('user_get', self::getParametros());
+        $staff = DB::select("SELECT staff.id_staff,staff.code_satff,staff.first_name,staff.last_name,
+              staff.active,staff.photo,(CONCAT(t2.departament ,' | ', t2.municipio)) as store,t.name FROM tstaff staff
+            INNER JOIN troll t on staff.id_roll = t.id_roll
+        INNER JOIN tstore t2 on staff.id_store = t2.id_store;") ;
+
+
+        return view('user_get', (self::getParametros()),  array('staff' =>$staff));
     }
 
     public function getParametros(){

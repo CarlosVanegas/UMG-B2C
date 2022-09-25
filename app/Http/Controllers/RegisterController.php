@@ -40,6 +40,15 @@ class RegisterController extends Controller
         $exixt =  DB::table('users')->where('email', request('email') )->exists();
 
         if($exixt == false){
+            $path ='';
+            if(!empty(request('foto_usuario'))){
+                $destination_path       = 'public/img/photos';
+                $photo                  = request('foto_usuario');
+                $photo_name             = $photo->getClientOriginalName();
+                $path                   = request('foto_usuario')->storeAs($destination_path,$photo_name);
+                $path                   = str_replace('public/', '', $path);
+            }
+
 
             $usersId = DB::table('users')->insertGetId([
                 'name' => request('userNameInput'),
@@ -58,8 +67,19 @@ class RegisterController extends Controller
                 'id_roll' => request('rollUser'), //**
                 'id_store' => request('id_store'), //**
                 'id' => $usersId,
-                'photo' => request('name_departament'),
+                'photo' => $path,
             ]);
+
+            $count = DB::select("SELECT COUNT(*) as totalStaff FROM tstaff WHERE id_store =  ".request('id_store'));
+
+            $total = 0;
+            foreach ($count as $item) {
+                $total = $item->totalStaff;
+            }
+            DB::table('tstore')->where('id_store',request('id_store'))->update(
+                array(
+                    'quantity_of_employees'=>$total,
+                ));
 
             session()->flash('success', 'Usuario creado correctamente!');
             return redirect('/access-create-users')->with('success','Usuario creado correctamente!');
@@ -116,7 +136,7 @@ class RegisterController extends Controller
              'code_store' => request('codeStore'),
              'description' => request('description'),
              'departament' => request('departament'),
-             'phone' => request('phone'),
+             'phone' => request('phone_staff'),
              'direction' => request('direction_store'),
              'active' => request('status'),
              'type_store' => request('type_store'),

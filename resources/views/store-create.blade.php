@@ -47,6 +47,9 @@
                                             <a href="#" class="dataTable-sorter">Teléfono</a>
                                         </th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" data-sortable="" style="width: 20.977%;">
+                                            <a href="#" class="dataTable-sorter">Total Empleados</a>
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" data-sortable="" style="width: 20.977%;">
                                             <a href="#" class="dataTable-sorter">Acciones</a>
                                         </th>
                                     </tr>
@@ -61,6 +64,7 @@
                                                 <td class="text-sm font-weight-normal">{{$store->departament}}</td>
                                                 <td class="text-sm font-weight-normal">{{$store->municipio}}</td>
                                                 <td class="text-sm font-weight-normal">{{$store->phone}}</td>
+                                                <td class="text-sm font-weight-normal">{{$store->quantity_of_employees}}</td>
                                                 <td class="text-sm font-weight-normal">
                                                     <a id="editarRoll" href="#" data-bs-toggle="modal" data-bs-target="#editModal"
                                                        class="editRoll mx-3" data-bs-toggle="tooltip"
@@ -160,7 +164,7 @@
                             <div class="col-6">
                                 <label class="form-label">Teléfono</label>
                                 <div class="input-group">
-                                    <input id="phone" name="phone" class="form-control" type="number" placeholder="4567-8900" value="" onfocus="focused(this)" onfocusout="defocused(this)">
+                                    <input id="phone" name="phone_staff" class="form-control" type="number" placeholder="4567-8900" value="" onfocus="focused(this)" onfocusout="defocused(this)">
                                 </div>
                             </div>
                         </div>

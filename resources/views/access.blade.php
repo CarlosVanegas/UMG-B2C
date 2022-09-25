@@ -89,7 +89,7 @@
                                 <form action="/create-new-user" method="POST" enctype="multipart/form-data" novalidate>
                                     <div class="" id="profile">
                                         <div class="row justify-content-center align-items-center">
-                                            <div class="col-sm-auto col-4" style="padding: 10px;">
+                                            <div class="col-4" style="padding: 10px;">
                                                 <div class="wrapper">
                                                     <button type="button" class="no-image" id="img-result">Upload Image</button>
                                                 </div>
@@ -97,7 +97,9 @@
                                                     <button class="hide-button">Close</button>
                                                     <pre class="upload-result__content"></pre>
                                                 </div>
+                                                <input class="form-control form-control-sm" name="foto_usuario" type="file" id="formFile">
                                             </div>
+
                                             <div class="col-sm-auto col-8 my-auto">
                                                 <div class="h-100">
                                                     <input type="hidden" name="userNameInput" id="userNameInput">
@@ -231,37 +233,41 @@
             $("#userNameInput").val(nombre.charAt(0)+apellido);
         });
 
-        (function () {
-            var uploader = document.createElement('input'),
-                image = document.getElementById('img-result');
+        var image = document.getElementById('img-result');
+        $('input[name=foto_usuario]').change(function() {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                image.classList.remove('no-image');
+                image.style.backgroundImage = 'url(' + evt.target.result + ')';
+                var request = {
+                    itemtype: 'test 1',
+                    brand: 'test 2',
+                    images: [{
+                        data: evt.target.result
+                    }]
+                };
 
-            uploader.type = 'file';
-            uploader.accept = 'image/*';
-            uploader.name = 'photo_user';
-
-            image.onclick = function() {
-                uploader.click();
             }
+            reader.readAsDataURL($('input[name=foto_usuario]').files[0]);
+        });
 
-            uploader.onchange = function() {
+
+        (function () {
+            var image = document.getElementById('img-result');
+            var fileToRead = document.getElementById("formFile");
+
+            fileToRead.addEventListener("change", function(event) {
+                var files = fileToRead.files;
                 var reader = new FileReader();
                 reader.onload = function(evt) {
                     image.classList.remove('no-image');
                     image.style.backgroundImage = 'url(' + evt.target.result + ')';
-                    var request = {
-                        itemtype: 'test 1',
-                        brand: 'test 2',
-                        images: [{
-                            data: evt.target.result
-                        }]
-                    };
-
-                    console.log(request);
                 }
-                reader.readAsDataURL(uploader.files[0]);
-            }
-        })();
+                console.log(fileToRead.files[0])
+                reader.readAsDataURL(fileToRead.files[0]);
 
+            }, false);
+        })();
 
     </script>
 

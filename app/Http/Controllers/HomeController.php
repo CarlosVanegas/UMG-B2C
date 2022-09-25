@@ -64,6 +64,31 @@ class HomeController extends Controller
         }
     }
 
+    public function deleteUser(Request $request){
+        $message = "";
+        if($request->isJson()){
+            $data       = $request->all();
+            $code_satff    = $data['code_satff'];
+
+            $troll_detail =  DB::table('tstaff')->where('code_satff', $code_satff)->delete();
+
+            if($troll_detail == true){
+                $message = "Usuario eliminado correctamente";
+            }else{
+                $message = "Usuario no encontrado";
+            }
+
+            return response([ 'code'=>201,  'message'=>$message ], 201);
+
+        }else{
+            return response([
+                'code'=>401,
+                'message'=>'format not allowed'
+            ], 401);
+
+        }
+    }
+
 
     public function getRoll($id){
 
@@ -89,17 +114,22 @@ class HomeController extends Controller
     }
 
     public function testing(){
-        $departamentArray = array();
-        $departaments = DB::select("SELECT * FROM tdepartament ");
 
-        foreach ($departaments as $departament) {
-              $municipio =  DB::select("SELECT * FROM tmunicipio
-                    WHERE id_departament = ".$departament->id_departament);
+        $string = "public/img/photos/260px-Ricardo_Arjona.jpg";
 
-            array_push($departamentArray,   array(  $departaments, '$unicipio'=> $municipio));
+        // Input string
+        $subjectVal = "It was nice meeting you. May you shine bright.";
+
+        // Using str_replace() function
+        $resStr = str_replace('public/', '', $string);
+
+
+        $count = DB::select("SELECT COUNT(*) as totalStaff FROM tstaff WHERE id_store =  2");
+
+        foreach ($count as $item) {
+            return $item->totalStaff;
         }
 
 
-        return $departamentArray;
     }
 }
