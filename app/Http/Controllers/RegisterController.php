@@ -41,6 +41,11 @@ class RegisterController extends Controller
 
         if($exixt == false){
 
+            $destination_path       = 'public/img/photos';
+            $photo                  = request('foto_usuario');
+            $photo_name             = $photo->getClientOriginalName();
+            $path                   = request('foto_usuario')->storeAs($destination_path,$photo_name);
+
             $usersId = DB::table('users')->insertGetId([
                 'name' => request('userNameInput'),
                 'email' => request('email',Rule::unique('users', 'email')),
@@ -58,7 +63,7 @@ class RegisterController extends Controller
                 'id_roll' => request('rollUser'), //**
                 'id_store' => request('id_store'), //**
                 'id' => $usersId,
-                'photo' => request('name_departament'),
+                'photo' => $path,
             ]);
 
             session()->flash('success', 'Usuario creado correctamente!');
@@ -116,7 +121,7 @@ class RegisterController extends Controller
              'code_store' => request('codeStore'),
              'description' => request('description'),
              'departament' => request('departament'),
-             'phone' => request('phone'),
+             'phone' => request('phone_staff'),
              'direction' => request('direction_store'),
              'active' => request('status'),
              'type_store' => request('type_store'),

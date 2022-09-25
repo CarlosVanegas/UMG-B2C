@@ -160,7 +160,7 @@
                             <div class="col-6">
                                 <label class="form-label">Teléfono</label>
                                 <div class="input-group">
-                                    <input id="phone" name="phone" class="form-control" type="number" placeholder="4567-8900" value="" onfocus="focused(this)" onfocusout="defocused(this)">
+                                    <input id="phone" name="phone_staff" class="form-control" type="number" placeholder="4567-8900" value="" onfocus="focused(this)" onfocusout="defocused(this)">
                                 </div>
                             </div>
                         </div>
