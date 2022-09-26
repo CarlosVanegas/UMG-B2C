@@ -127,6 +127,17 @@ class RegisterController extends Controller
         return redirect('/access-user-groups')->with('success','Categoria creada correctamente');
     }
 
+    //save_category_product
+    public function save_category_product(Request $request){
+
+         DB::table('tcategory')->insert([
+            'name' => request('categoryName')
+        ]);
+
+        session()->flash('success', 'Categoria creada correctamente!');
+        return redirect('/articles-products')->with('success','Categoria creada correctamente');
+    }
+
     public function save_data_store(Request $request){
 
 
@@ -179,6 +190,17 @@ class RegisterController extends Controller
         }
 
         return redirect('/access-user-groups')->with('Roll editado correctamente!');
+    }
+
+    public function edit_data_category(Request $request){
+        $id = request('edit_id_category');
+        DB::table('tcategory')->where('id_category',$id)->update(
+            array(
+                'name'=>request('edit_categoryName'),
+            ));
+
+        session()->flash('success', 'Categoria Modificada correctamente!');
+        return redirect('/articles-products')->with('Roll editado correctamente!');
     }
 
 }

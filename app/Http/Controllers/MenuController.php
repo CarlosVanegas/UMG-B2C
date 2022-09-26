@@ -155,5 +155,24 @@ class MenuController extends Controller
 
 
 
+    public function getArticles(){
+        $categorys = DB::select("SELECT * FROM tcategory");
+
+        return view('articles', (self::getParametros()), array('categorys'=>$categorys) );
+    }
+
+    public function getLotes(){
+        return view('lotes', (self::getParametros()) );
+    }
+
+    public function getPromotios(){
+        return view('promotions', (self::getParametros()) );
+    }
+
+    public function getPrices(){
+        return view('prices', (self::getParametros()) );
+    }
+
+
 
 }

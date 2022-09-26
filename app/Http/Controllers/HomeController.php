@@ -113,6 +113,23 @@ class HomeController extends Controller
 
     }
 
+
+    public function deleteCategoy(Request $request){
+
+
+        if($request->isJson()) {
+            $data = $request->all();
+            $id = $data['id'];
+
+
+            DB::table('tcategory')->where('id_category', $id)->delete();
+
+            session()->flash('success', 'Categoria creada correctamente!');
+            return redirect('/articles-products')->with('success','Categoria creada correctamente');
+        }
+
+
+    }
     public function testing(){
 
         $string = "public/img/photos/260px-Ricardo_Arjona.jpg";
