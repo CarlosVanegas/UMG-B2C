@@ -132,21 +132,6 @@ class HomeController extends Controller
     }
     public function testing(){
 
-        $string = "public/img/photos/260px-Ricardo_Arjona.jpg";
-
-        // Input string
-        $subjectVal = "It was nice meeting you. May you shine bright.";
-
-        // Using str_replace() function
-        $resStr = str_replace('public/', '', $string);
-
-
-        $count = DB::select("SELECT COUNT(*) as totalStaff FROM tstaff WHERE id_store =  2");
-
-        foreach ($count as $item) {
-            return $item->totalStaff;
-        }
-
 
     }
 }

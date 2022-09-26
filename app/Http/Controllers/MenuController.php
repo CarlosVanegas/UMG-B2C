@@ -162,7 +162,17 @@ class MenuController extends Controller
     }
 
     public function getLotes(){
-        return view('lotes', (self::getParametros()) );
+        $code =  strtoupper(Str::random(8));
+        date_default_timezone_set("America/Guatemala");
+        $today = date('Y-m-d h:i:s a', time());
+
+        $proveedor = DB::select("SELECT * FROM tsupplier;");
+        $tcategorys = DB::select("SELECT * FROM tcategory;");
+        $products= DB::select("    SELECT * FROM tproduct ;");
+        $bodegas= DB::select("SELECT * FROM tceller ;");
+
+        return view('lotes', (self::getParametros()), array('code' =>$code,'today' =>$today,
+            'proveedores'=>$proveedor,'tcategorys'=>$tcategorys,'products'=>$products,'bodegas'=>$bodegas) );
     }
 
     public function getPromotios(){
@@ -173,6 +183,21 @@ class MenuController extends Controller
         return view('prices', (self::getParametros()) );
     }
 
+
+    public function demo(){
+        $data = [
+            'nameLote' => request('name_lote'),
+            'statusLote' => request('type_action'),
+            'supplierLote' => request('supplier'),
+            'nbarcodeLote' => request('barcode'),
+            'codeProduct' => request('sku'),
+            'nameProduct' => request('product'),
+            'countLote' => request('count'),
+            'expiration_date' => request('expiration_date'),
+            'category_product' => request('category_product'),
+
+        ];
+    }
 
 
 }
