@@ -75,13 +75,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('access-user-groups', [MenuController::class, 'user_groups'])->name('access-user-groups');
     Route::get('access-permissions', [MenuController::class, 'user_permissions'])->name('access-permissions');
     Route::get('access-users', [MenuController::class, 'user_get'])->name('access-users');
+
+    Route::get('articles-products', [MenuController::class, 'getArticles'])->name('articles-prdducts');
+    Route::get('articles-lotes', [MenuController::class, 'getLotes'])->name('articles-lotes');
+    Route::get('articles-promotios', [MenuController::class, 'getPromotios'])->name('articles-promotios');
+    Route::get('articles-prices', [MenuController::class, 'getPrices'])->name('articles-prices');
     Route::get('user-profile', [MenuController::class, 'get_modules_bussines'])->name('dashboard');
     Route::get('store-create',  [MenuController::class, 'getstores'])->name('store-create');
     Route::get('/testing', [MenuController::class, 'getDemo'])->name('testing');
     Route::post('/save_data_business',   [RegisterController::class, 'save_data_business']);
     Route::post('/save_data_roll', [RegisterController::class, 'save_data_roll']);
+    Route::post('/save_category_product', [RegisterController::class, 'save_category_product']);
     Route::post('/save_data_store', [RegisterController::class, 'save_data_store']);
     Route::post('/edit_data_roll', [RegisterController::class, 'edit_data_roll']);
+    Route::post('/edit_data_category', [RegisterController::class, 'edit_data_category']);
     Route::post('/create-new-user', [RegisterController::class, 'create_new_user']);
 });
 
@@ -113,6 +120,7 @@ Route::post('/save_data_roll_demo', [RegisterController::class, 'save_data_roll'
 Route::post('delete_roll', [HomeController::class, 'deleteRoll']);
 Route::post('delete_user', [HomeController::class, 'deleteUser']);
 Route::get('get_roll/{id}', [HomeController::class, 'getRoll']);
+Route::post('delete_category', [HomeController::class, 'deleteCategoy']);
 
 
 Route::get('/demodemodemo', [HomeController::class, 'testing'])->name('demodemodemo');
