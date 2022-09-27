@@ -310,7 +310,7 @@
                                          @endisset
                                      </select>
                                  </div>
-                                 <div>
+                                 <div class="col-md-6">
                                      <label for="categoryName" class="form-label">Categoria</label>
                                      <select id="moduleSelect" name="module" class="form-select" required aria-label="select example">
                                          <option value="">Seleccione categoria</option>
@@ -320,6 +320,12 @@
                                              @endforeach
                                          @endisset
                                      </select>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <label for="categoryName" class="form-label">Cantidad</label>
+                                     <div class="">
+                                         <input type="number" class="form-control " value="" id="countLote" name="countLote" onfocus="focused(this)" onfocusout="defocused(this)">
+                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                      <label for="categoryName" class="form-label">Nombre Prodcto</label>
