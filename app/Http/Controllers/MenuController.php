@@ -170,9 +170,10 @@ class MenuController extends Controller
         $tcategorys = DB::select("SELECT * FROM tcategory;");
         $products= DB::select("    SELECT * FROM tproduct ;");
         $bodegas= DB::select("SELECT * FROM tceller ;");
+        $lotes= DB::select("SELECT * FROM tlote ;");
 
         return view('lotes', (self::getParametros()), array('code' =>$code,'today' =>$today,
-            'proveedores'=>$proveedor,'tcategorys'=>$tcategorys,'products'=>$products,'bodegas'=>$bodegas) );
+            'proveedores'=>$proveedor,'tcategorys'=>$tcategorys,'products'=>$products,'bodegas'=>$bodegas,'lotes'=>$lotes) );
     }
 
     public function getPromotios(){

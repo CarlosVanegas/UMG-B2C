@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/testing', [MenuController::class, 'getDemo'])->name('testing');
     Route::post('/save_data_business',   [RegisterController::class, 'save_data_business']);
     Route::post('/save_data_roll', [RegisterController::class, 'save_data_roll']);
+    Route::post('/save_data_lote', [RegisterController::class, 'save_data_lote']);
     Route::post('/save_category_product', [RegisterController::class, 'save_category_product']);
     Route::post('/save_data_store', [RegisterController::class, 'save_data_store']);
     Route::post('/edit_data_roll', [RegisterController::class, 'edit_data_roll']);

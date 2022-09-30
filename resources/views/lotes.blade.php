@@ -30,151 +30,83 @@
                                         <div class="card-header pb-0">
                                             <h6>Listado de Lotes</h6>
                                         </div>
-                                        <div class="card-body px-0 pt-0 pb-2">
-                                            <div class="table-responsive p-0">
-                                                <table class="table align-items-center mb-0">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Value</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ads Spent</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Refunds</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex px-3 py-1">
-                                                                <div>
-                                                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
-                                                                </div>
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">Nike v22 Running</h6>
-                                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">8.232</span> orders</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="text-sm font-weight-bold mb-0">$130.992</p>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <p class="text-sm font-weight-bold mb-0">$9.500</p>
-                                                        </td>
-                                                        <td class="align-middle text-end">
-                                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                                <p class="text-sm font-weight-bold mb-0">13</p>
-                                                                <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                                <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is lower with 97% than other products">
-                                                                    <i class="fas fa-info" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex px-3 py-1">
-                                                                <div>
-                                                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/black-mug.jpg" class="avatar me-3" alt="image">
-                                                                </div>
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">Business Kit (Mug + Notebook)</h6>
-                                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">12.821</span> orders</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="text-sm font-weight-bold mb-0">$80.250</p>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <p class="text-sm font-weight-bold mb-0">$4.200</p>
-                                                        </td>
-                                                        <td class="align-middle text-end">
-                                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                                <p class="text-sm font-weight-bold mb-0">40</p>
-                                                                <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex px-3 py-1">
-                                                                <div>
-                                                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/black-chair.jpg" class="avatar me-3" alt="image">
-                                                                </div>
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">Black Chair</h6>
-                                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">2.421</span> orders</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="text-sm font-weight-bold mb-0">$40.600</p>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <p class="text-sm font-weight-bold mb-0">$9.430</p>
-                                                        </td>
-                                                        <td class="align-middle text-end">
-                                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                                <p class="text-sm font-weight-bold mb-0">54</p>
-                                                                <i class="ni ni-bold-up text-sm ms-1 mt-1 text-danger"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex px-3 py-1">
-                                                                <div>
-                                                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/bang-sound.jpg" class="avatar me-3" alt="image">
-                                                                </div>
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">Wireless Charger</h6>
-                                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">5.921</span> orders</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="text-sm font-weight-bold mb-0">$91.300</p>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <p class="text-sm font-weight-bold mb-0">$7.364</p>
-                                                        </td>
-                                                        <td class="align-middle text-end">
-                                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                                <p class="text-sm font-weight-bold mb-0">5</p>
-                                                                <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="d-flex px-3 py-1">
-                                                                <div>
-                                                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/photo-tools.jpg" class="avatar me-3" alt="image">
-                                                                </div>
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">Mountain Trip Kit (Camera + Backpack)</h6>
-                                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="text-success">921</span> orders</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <p class="text-sm font-weight-bold mb-0">$140.925</p>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <p class="text-sm font-weight-bold mb-0">$20.531</p>
-                                                        </td>
-                                                        <td class="align-middle text-end">
-                                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                                <p class="text-sm font-weight-bold mb-0">121</p>
-                                                                <i class="ni ni-bold-up text-sm ms-1 mt-1 text-danger"></i>
-                                                                <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Refund rate is higher with 70% than other products">
-                                                                    <i class="fas fa-info" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                        <div class="table-responsive">
+                                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                                                <div class="dataTable-top">
+                                                    <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>
+                                                </div>
+                                                <div class="dataTable-container">
+                                                    <table class="table table-flush dataTable-table" id="datatable-search">
+                                                        <thead class="thead-light">
+                                                        <tr>
+                                                            <th data-sortable="" style="width: 27.3913%;"><a href="#" class="dataTable-sorter">Cod.Lote</a></th>
+                                                            <th data-sortable="" style="width: 30.4348%;"><a href="#" class="dataTable-sorter">Fecha Creado</a></th>
+                                                            <th data-sortable="" style="width: 29.7826%;"><a href="#" class="dataTable-sorter">Estado</a></th>
+                                                            <th data-sortable="" style="width: 36.5217%;"><a href="#" class="dataTable-sorter">Customer</a></th>
+                                                            <th data-sortable="" style="width: 41.5217%;"><a href="#" class="dataTable-sorter">Producto</a></th>
+                                                            <th data-sortable="" style="width: 20.2174%;"><a href="#" class="dataTable-sorter">Cantidad</a></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+
+                                                            @isset($lotes)
+                                                                @foreach($lotes as $lote)
+                                                                    <tr>
+                                                                    <td class="font-weight-bold">
+                                                                        <span class="my-2 text-xs">{{$lote->code_lote}}</span>
+                                                                    </td>
+                                                                    <td class="font-weight-bold">
+                                                                        <span class="my-2 text-xs">{{$lote->date_today}}</span>
+                                                                    </td>
+                                                                    <td class="font-weight-bold">
+                                                                        <div class="d-flex align-items-center">
+                                                                            @if($lote->type_action == 0)
+                                                                                <button class="btn btn-icon-only btn-rounded btn-outline-warning mb-0 me-2 btn-sm d-flex align-items-center justify-content-center">
+                                                                                    <i class="fa-solid fa-pause" aria-hidden="true"></i>
+                                                                                </button>
+                                                                                <span>En espera</span>
+                                                                            @elseif($lote->type_action == 1)
+                                                                                <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center">
+                                                                                    <i class="fas fa-undo" aria-hidden="true"></i>
+                                                                                </button>
+                                                                                <span>Aprobado</span>
+                                                                            @else
+                                                                                <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-2 btn-sm d-flex align-items-center justify-content-center">
+                                                                                    <i class="fas fa-times" aria-hidden="true"></i>
+                                                                                </button>
+                                                                                <span>Cancelado</span>
+                                                                            @endif
+
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="font-weight-bold">
+                                                                        <span class="my-2 text-xs">{{$lote->type_action}}</span>
+                                                                    </td>
+                                                                     <td class="font-weight-bold">
+                                                                        <span class="my-2 text-xs">{{$lote->product}}</span>
+                                                                    </td>
+                                                                     <td class="font-weight-bold">
+                                                                        <span class="my-2 text-xs">{{$lote->count}}</span>
+                                                                    </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endisset
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="dataTable-bottom">
+                                                    <div class="dataTable-info">Showing 1 to 10 of 12 entries</div>
+                                                    <nav class="dataTable-pagination">
+                                                        <ul class="dataTable-pagination-list">
+                                                            <li class="pager"><a href="#" data-page="1">‹</a></li>
+                                                            <li class="active"><a href="#" data-page="1">1</a></li>
+                                                            <li class=""><a href="#" data-page="2">2</a></li>
+                                                            <li class="pager"><a href="#" data-page="2">›</a></li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -193,12 +125,14 @@
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
+
                      <h5 class="modal-title" id="exampleModalLabel">Nuevo Lote <span style="color: brown;">{{$code}}</span></h5>
                      <span style="font-size: 12px;">{{$today}}</span>
                  </div>
                  <div class="modal-body">
-                     <form id="create_lotes" method="post" action="/save_data_roll" enctype="multipart/form-data" novalidate>
+                     <form id="create_lotes" method="post" action="/save_data_lote" enctype="multipart/form-data" novalidate>
                          @csrf
+                         <input type="hidden" name="cod_lote" value="{{$code}}">
                          <label for="categoryName" class="form-label">Nombre del Lote</label>
                          <div class="">
                              <input type="text" class="form-control " value="" id="nameLote" name="nameLote" onfocus="focused(this)" onfocusout="defocused(this)">
@@ -301,7 +235,7 @@
                              <div id="newProduct" class="row d-none">
                                  <div>
                                      <label for="categoryName" class="form-label">Bodega</label>
-                                     <select id="moduleSelect" name="module" class="form-select" required aria-label="select example">
+                                     <select id="celletSelect" name="celler" class="form-select" required aria-label="select example">
                                          <option value="">Seleccione Bodega</option>
                                          @isset($bodegas)
                                              @foreach($bodegas as $bodega)
@@ -409,7 +343,7 @@
              $( "#codeProduct" ).val(makeid(12)) ;
          });
 
-         $( "#codeProduct" ).prop( "disabled", true );
+         //$( "#codeProduct" ).prop( "disabled", true );
 
 
 
