@@ -104,6 +104,31 @@ class RegisterController extends Controller
         return redirect('/business')->with('success','Profile updated successfully');
     }
 
+    public function save_data_lote(){
+        date_default_timezone_set("America/Guatemala");
+        $today = date('Y-m-d h:i:s', time());
+
+        DB::table('tlote')->insert([
+            'name_lote' => request('nameLote'),
+            'type_action' => request('statusLote'),
+            'supplier' => request('supplierLote'),
+            'barcode' => request('nbarcodeLote'),
+            'sku' => request('codeProduct'),
+            'product' => request('nameProduct'),
+            'celler' => request('celler'),
+            'count' => request('countLote'),
+            'expiration_date' => request('expiration_date'),
+            'category_product' => request('category_product'),
+            'code_lote' => request('cod_lote'),
+            'date_today' => $today,
+        ]);
+
+
+        session()->flash('success', 'Lote creado correctamente!');
+        return redirect('/articles-lotes')->with('success','Lote creado correctamente');
+        print_r($data);
+    }
+
     public function save_data_roll(Request $request){
 
         $insertedId = DB::table('troll')->insertGetId([
